@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+a social networking hub for artists and fans to connect
 
-Things you may want to cover:
 
-* Ruby version
+-using postgresql database
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+TO-DO:
 
-* Database initialization
+-~user login and authentication~
+-~admin panel~
+-~basic posting~
 
-* How to run the test suite
+-multi-media posts
 
-* Services (job queues, cache servers, search engines, etc.)
+-basic mailer
+-basic comments
 
-* Deployment instructions
+-automatic login on registration email confirmation
 
-* ...
+
+-update user info (first last name, username, etc...)
+-admin panel sign in
+-expand comments capabilities (edit, delete, etc...)
+-subscription
+-user avatars
+-current activity
+-blocking
+-events
+-current location
+-app integration
+-upload media with posts (images, audio, video)
+-account options / email notification options
+
+live feed:
+    -chronological order (favorites highlited or jsut favorites)
+
+-tie posts to live feed / save media for profile displays
+
+
+
+user profiles:
+    -display name
+    -banner / profile img
+    -local feed
+    -media tabs (image, audio, video, text) (featured on page chosen by user)
+    -links to other pages (imdb, etc.)
+
+    -feature borrowed 'media' for non-artist confirmed accounts
+    -display 'borrowed media' authors and links to profile promiently
+    -events
+
+
+
+-event creation system
+    
+-likes/dislikes (posts, comments, media (dislikes not public...))
+
+-search profiles, events, or media 
+-(advanced search ^^^)
+
+-easy search for nearby events
+-(advanced search ^^^)
+
+
+

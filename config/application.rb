@@ -15,5 +15,23 @@ module Ark
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+
+
+
+
+    #for mailing
+    ActionMailer::Base.smtp_settings = {
+      :address => 'smtp.gmail.com',
+      :domain => 'mail.google.com',
+      :port => 587,
+
+      :user_name => ENV["user_name"], 
+      :password => ENV["password"], 
+
+      :authentication => 'login',
+      :enable_starttls_auto => true 
+    }
+
   end
 end
