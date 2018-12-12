@@ -14,6 +14,8 @@ TO-DO:
 
 -~automatic login on registration email confirmation~
 
+-~admin panel sign in~
+
 ---------------------------------------------------------------------
 
 -make admin profile avatars say admin on them
@@ -25,8 +27,6 @@ TO-DO:
 -basic comments
 
 -update user info (first last name, username, etc...)
-
--admin panel sign in
 
 -expand comments capabilities (edit, delete, etc...)
 
@@ -84,6 +84,8 @@ user profiles:
 -easy search for nearby events
 
 -(advanced search ^^^)
+
+-gps location services
 
 
 
