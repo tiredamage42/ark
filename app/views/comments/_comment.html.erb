@@ -1,0 +1,25 @@
+
+<li>
+
+    <strong><%= comment.user.user_name %>:</strong>
+    <%= comment.body %>
+        
+    <!--get commentable path somehow-->
+    <%#= link_to 'Edit', edit_post_comment_path(comment.post, comment) %> |
+    
+    <%= link_to 'Edit', edit_polymorphic_path([commentable, comment]) %> |
+    
+    <%= link_to '[x]', [commentable, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
+
+    <% if add_comment_field %>
+
+    <ul>
+        <%= render 'comments/comments', commentable: comment, add_comment_field: false %>
+        <li>
+            <%= render 'comments/form', commentable: comment, comment: Comment.new %>
+        </li>
+    </ul>
+    
+    <% end %>
+</li>
+    

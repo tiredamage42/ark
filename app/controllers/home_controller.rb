@@ -1,5 +1,11 @@
 class HomeController < ApplicationController
 
+    #home should show confirmed artist profiles
+    # featured, new, popular, random?
+
+
+
+
     def index
         #if not signed in go to log in screen
         if !user_signed_in?

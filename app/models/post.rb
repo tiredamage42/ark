@@ -1,6 +1,15 @@
 class Post < ApplicationRecord
     belongs_to :user
 
+    has_many :comments, as: :commentable
+
+    validates :body, presence: true
+
+
+    def commentable_root
+        self
+    end
+
 
     def self.search (search)
         
