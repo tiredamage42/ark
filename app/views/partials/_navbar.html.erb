@@ -25,7 +25,7 @@
         <!--MOBILE FIRST APPROACH 
             so it renders the stuff above first and this is the 'hidden content'
         -->
-        <div class="collapse navbar-collapse ml-auto col-auto" id="NAVBAR_MINI_INCLUDE">
+        <div class="collapse navbar-collapse pr-0 mr-0 ml-auto col-auto" id="NAVBAR_MINI_INCLUDE">
             
             <div class="navbar-nav ml-auto">
     
@@ -36,6 +36,26 @@
 
 
                     
+                
+                
+                <!--forms in navbar-->
+                <form class="form-inline">
+                    
+                    <!--puts seach input into posts path url-->
+                    <%= form_tag posts_path, method: 'get' do %>
+                    
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <%= submit_tag "Search", class: 'btn btn-primary' %>
+                        </div>
+                        <%= text_field_tag :search, params[:search], class: "form-control" %>
+                        
+                    </div>
+                    <% end %>
+                    
+                    
+                </form>
+
                 <% if user_signed_in? %>
               
 
@@ -50,11 +70,11 @@
                         </a>
         
                         
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu dropdown-menu-right">
         
                             <%#= link_to "My Profile", current_user, class: "dropdown-item" %>
                             
-                            <%#= link_to "Account", edit_user_path(current_user), class: "dropdown-item" %>
+                            <%= link_to "Account", edit_user_registration_path, class: "dropdown-item" %>
                             
                             <div class="dropdown-divider"></div>
                             <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -73,25 +93,6 @@
                 <%= link_to "Register", new_user_registration_path, class: "nav-link nav-item" %>
 
                 <% end %>
-
-
-                <!--forms in navbar-->
-                <form class="form-inline">
-                        
-                        <!--puts seach input into posts path url-->
-                        <%= form_tag posts_path, method: 'get' do %>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <%= submit_tag "Search", class: 'btn btn-primary' %>
-                            </div>
-                            <%= text_field_tag :search, params[:search], class: "form-control" %>
-        
-                        </div>
-                        <% end %>
-
-                        
-                    </form>
             </div>
     
         </div>
