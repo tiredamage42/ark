@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   resources :conversations do
     member do
       post :close
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' } do
     get ':user/edit-profile' => 'devise/registration#edit', :as => :edit_user_profile
   end
+  resources :users, :only => [:show]
+  
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
