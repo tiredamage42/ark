@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   
+  before_action :set_commenting_available
+  
+
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   before_action :set_commentable,  only: [:create, :update, :destroy]
@@ -29,22 +32,26 @@ class CommentsController < ApplicationController
   # commentable /comments.json
   def create
 
-    @comment = @commentable.comments.create(comment_params)
+    @comment = @commentable.comments.new(comment_params)
     @comment.user_id = current_user.id
     
     respond_to do |format|
       if @comment.save
-
-        #CommentMailer.comment_created(current_user, @post.user, @comment.body).deliver
-        
-        format.html { redirect_to @commentable.commentable_root, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
+    
+        @create_succeeded = true
       
-        format.html { redirect_to @commentable.commentable_root, notice: @comment.errors }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { flash.now[:notice] = "Comment was successfully created" }
+      
+        #CommentMailer.comment_created(current_user, @post.user, @comment.body).deliver
+      else
+        @create_succeeded = false
+        format.js { flash.now[:notice] = @comment.errors.first }
+      
+      
       end
     end
+    
+
   end
 
   # PATCH/PUT /comments/1
@@ -66,15 +73,22 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+
     @comment.destroy
+
     respond_to do |format|
-      format.html { redirect_to @commentable.commentable_root, notice: 'Comment was successfully destroyed.' }
-      
-      format.json { head :no_content }
+    
+      format.js { flash.now[:notice] = "Comment was successfully deleted" }
     end
+    
   end
 
+
   private
+
+    def set_commenting_available
+      @commenting_available = true
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_comment

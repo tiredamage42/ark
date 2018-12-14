@@ -1,7 +1,9 @@
 
 #to sign in automatically after confirmation of account
 class ConfirmationsController < Devise::ConfirmationsController
-    def show
+    
+  
+  def show
       self.resource = resource_class.confirm_by_token(params[:confirmation_token])
       yield resource if block_given?
   

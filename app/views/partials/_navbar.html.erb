@@ -1,0 +1,102 @@
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow sticky-top">
+    
+        <!--Website Title-->
+        <a href="<%= root_path %>" class="navbar-brand align-bottom py-0">
+            <span class="nav-item nav-accent">A</span>
+            <span class="nav-item">R</span>
+            <span class="nav-item nav-accent">
+                K
+
+                <%= image_tag("logo_w.png", class: "nav-item nav-logo mx-0 mb-1") %>
+                <!--
+
+                    <img class="nav-item nav-logo mx-0 mb-1" alt="" src="<%#= asset_path("logo_w.png") %>">        
+                -->
+            </span>
+        </a>
+            
+        </div>
+        <!--button for collapsed mode-->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#NAVBAR_MINI_INCLUDE">
+            <span class="navbar-toggler-icon"><!--&#9776;--></span>
+        </button>
+    
+        <!--MOBILE FIRST APPROACH 
+            so it renders the stuff above first and this is the 'hidden content'
+        -->
+        <div class="collapse navbar-collapse ml-auto col-auto" id="NAVBAR_MINI_INCLUDE">
+            
+            <div class="navbar-nav ml-auto">
+    
+                <%#= link_to "Home", root_path, class: "nav-link nav-item #{yield(:blog_active)}" %>
+                <%#= link_to "About", about_path, class: "nav-link nav-item #{yield(:about_active)}" %>
+                <%#= link_to "Contact", contact_path, class: "nav-link nav-item #{yield(:contact_active)}" %>
+                
+
+
+                    
+                <% if user_signed_in? %>
+              
+
+
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="author-nav nav-link dropdown-toggle <%=yield(:author) %>">
+                            
+                            <%= current_user.user_name %>
+                            <!--Add avatar image-->
+        
+                        </a>
+        
+                        
+                        <div class="dropdown-menu">
+        
+                            <%#= link_to "My Profile", current_user, class: "dropdown-item" %>
+                            
+                            <%#= link_to "Account", edit_user_path(current_user), class: "dropdown-item" %>
+                            
+                            <div class="dropdown-divider"></div>
+                            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                            <% if current_user.admin? %>
+                                <div class="dropdown-divider"></div>
+                            
+                                <%= link_to "Admin Panel", rails_admin.dashboard_path, class: "dropdown-item" %>
+                            
+                            <% end %>
+                        </div>
+                    </div>
+
+                <% else %>
+
+                <%= link_to "Sign In", new_user_session_path, class: "nav-link nav-item" %>
+                <%= link_to "Register", new_user_registration_path, class: "nav-link nav-item" %>
+
+                <% end %>
+
+
+                <!--forms in navbar-->
+                <form class="form-inline">
+                        
+                        <!--puts seach input into posts path url-->
+                        <%= form_tag posts_path, method: 'get' do %>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <%= submit_tag "Search", class: 'btn btn-primary' %>
+                            </div>
+                            <%= text_field_tag :search, params[:search], class: "form-control" %>
+        
+                        </div>
+                        <% end %>
+
+                        
+                    </form>
+            </div>
+    
+        </div>
+    
+
+    </nav>
+    
+    

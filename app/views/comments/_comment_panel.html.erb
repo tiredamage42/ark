@@ -1,0 +1,9 @@
+
+<div id='comment_panel-<%= commentable.class.name %>-<%= commentable.id %>'>
+    <% commentable.comments.each do |comment| %>
+
+        <%= render 'comments/comment', comment: comment, commentable: commentable, commenting_available: commenting_available %>
+        
+    <% end %>
+</div>
+  

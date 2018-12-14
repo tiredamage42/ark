@@ -1,16 +1,21 @@
 class User < ApplicationRecord
   
   validates_uniqueness_of :email
-  #validates :first_name, :user_name, :email, :password, :password_confirmation, presence: true
+
+  validates :first_name, presence: true, allow_blank: false
+  validates :user_name, presence: true, allow_blank: false
+  validates :email, presence: true, allow_blank: false
+  validates :password, presence: true, allow_blank: false
+  validates :password_confirmation, presence: true, allow_blank: false
+    
   
   # Include default devise modules. Others available are :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, 
-  :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable 
   
   
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
-
+  has_many :comments, dependent: :destroy
 
 
   #makes rails admin able to adjust user profiles wihtout password

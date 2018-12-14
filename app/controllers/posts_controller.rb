@@ -8,14 +8,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-
     @posts = Post.search(params[:search])
-  
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+
+    #@new_comment = Comment.new
+    #@all_comments = @post.comments.order("created_at DESC")
 
     #@comment = @post.comments.build
     #@comment.user_id = current_user.id
@@ -24,7 +25,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = current_user.posts.build
-  
   end
 
   # GET /posts/1/edit
@@ -42,6 +42,7 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
+        #redirect_to root_path, notice: @post.errors.full_messages.first
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
@@ -79,9 +80,7 @@ class PostsController < ApplicationController
     end
 
     def set_new_post
-      #@post = current_user.posts.new(post_params)
       @post = current_user.posts.build(post_params)
-    
     end
 
 

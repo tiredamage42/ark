@@ -1,25 +1,32 @@
 
-<li>
+<div id='comment-<%= comment.id %>'>
+    
+    <li>            
+        <strong><%= comment.user.user_name %>:</strong>
 
-    <strong><%= comment.user.user_name %>:</strong>
-    <%= comment.body %>
+        [<%= comment.created_at_str %>]
+
+        <%= comment.body %>
         
-    <!--get commentable path somehow-->
-    <%#= link_to 'Edit', edit_post_comment_path(comment.post, comment) %> |
-    
-    <%= link_to 'Edit', edit_polymorphic_path([commentable, comment]) %> |
-    
-    <%= link_to '[x]', [commentable, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
-
-    <% if add_comment_field %>
-
-    <ul>
-        <%= render 'comments/comments', commentable: comment, add_comment_field: false %>
-        <li>
-            <%= render 'comments/form', commentable: comment, comment: Comment.new %>
-        </li>
-    </ul>
-    
-    <% end %>
-</li>
-    
+        <!--or if commentable root user-->
+        <% if current_user == comment.user || current_user.admin %>
+        
+        <%= link_to '[/]', edit_polymorphic_path([commentable, comment]), id: 'edit-' + comment.id.to_s %>
+        
+        <%= link_to '[X]', [commentable, comment], method: :delete, remote: true, data: {confirm: 'Are you sure?'} %>
+        
+        <% end %>
+        
+        <% if commenting_available %>
+            
+        <ul>
+            <%= render 'comments/comment_panel', commentable: comment, commenting_available: false %>
+            <li>    
+                <%= render 'comments/form', commentable: comment, comment: Comment.new %>
+            </li>
+        </ul>
+        <% end %>
+            
+    </li>
+          
+</div>

@@ -11,37 +11,13 @@
 
   <body>
 
-    <!--ERRORS AND ALERTS-->
-    <% if flash[:notice] %>
-      <p class="alert"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:alert] %>
-        <p class="alert"><%= flash[:alert] %></p>
-    <% end %>
+    <%= render 'partials/navbar' %>
 
-    <% if user_signed_in? %>
-      <p>Hello, <%= current_user.user_name %> - 
-        <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %>
-      
-        <% if current_user.admin? %>
-      
-        <%= link_to "Admin Panel", rails_admin.dashboard_path %>
-      
-        <% end %>
-      </p>
-    <% else %>
-
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
-      
-    <% end %>
+    <div id="flashalerts">
+      <%= render "partials/flash_alerts" %>
+    </div>
 
 
-    <!--puts seach input into posts path url-->
-    <%= form_tag posts_path, method: 'get' do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Posts" %>
-    <% end %>
 
 
     <%= yield %>

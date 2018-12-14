@@ -1,7 +1,10 @@
-<%= form_for [commentable, comment] do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+<!-- form_with for dynamic forms -->
+<%= form_with model: [commentable, comment] do |form| %>
+
+<% if comment.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(comment.errors.count, 'error') %> prohibited this comment from being saved:</h2>
     
       <ul>
         <% comment.errors.full_messages.each do |message| %>
@@ -10,11 +13,11 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.text_area :body, placeholder: "Add a comment" %>
+  
+  <div class='field'>
+    <%= form.text_area :body, placeholder: 'Add a comment', id: 'comment_body-' + commentable.class.name + '-' + commentable.id.to_s %>
   </div>
-  <div class="actions">
+  <div class='actions'>
     <%= form.submit %>
   </div>
 

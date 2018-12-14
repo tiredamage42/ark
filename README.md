@@ -20,6 +20,8 @@ TO-DO:
 
 -~expand comments capabilities (edit, delete, etc...)~
 
+-~ajax comments~
+
 ---------------------------------------------------------------------
 
 -edit based on user ownership
@@ -36,7 +38,6 @@ TO-DO:
 
 -update user info (first last name, username, etc...)
 
--ajax comments
 
 -user avatars
 

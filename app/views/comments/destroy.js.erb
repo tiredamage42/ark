@@ -1,0 +1,8 @@
+
+
+//deletes html inside comment
+
+$('#comment-<%= @comment.id %>').html('');
+
+//render flash alerts
+$("#flashalerts").html('<%= j render "partials/flash_alerts" %>');

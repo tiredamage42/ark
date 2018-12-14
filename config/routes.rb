@@ -5,22 +5,22 @@ Rails.application.routes.draw do
   
   
   #use custom controllers ( our registration controller )
-  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' }
+  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' } do
+    get ':user/edit-profile' => 'devise/registration#edit', :as => :edit_user_profile
+  end
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   
+  
   resources :posts do
-
     #uses posts/comments_controller.rb
     resources :comments, module: :posts
     
-    #resources :comments
   end
 
   resources :comments do
     resources :comments, module: :comments
-    #resources :comments
     
   end
 

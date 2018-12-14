@@ -1,0 +1,11 @@
+
+
+
+<% if @create_succeeded %>
+comment_html = "<%= j render 'comments/comment', comment: @comment, commentable: @commentable, commenting_available: @commenting_available %>";
+$('#comment_panel-<%= @commentable.class.name %>-<%= @commentable.id %>').append(comment_html);
+<% end %>
+
+$('#comment_body-<%= @commentable.class.name %>-<%= @commentable.id %>').val("");
+//render flash alerts
+$("#flashalerts").html('<%= j render "partials/flash_alerts" %>');
