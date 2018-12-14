@@ -1,0 +1,29 @@
+
+//try to find an existing conversation window in the ‘#conversations-list’ div. 
+var conversations = $('#conversations-list');
+var conversation = conversations.find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
+
+//If it doesn’t exist (length !== 1), 
+if (conversation.length !== 1) {
+    //we add to the ‘#conversations-list’ div a new conversation. 
+    conversations.append("<%= j(render 'conversations/conversation', conversation: @conversation, user: current_user) %>");
+  
+    //If we add it, we need to reassign to the conversation variable added element. 
+    conversation = conversations.find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
+}
+
+
+
+
+//call the show() method to display a conversation’s window.
+conversation.find('.card-body').show();
+
+//check the height of the window and scroll to the bottom of it. 
+//new message should always be at the bottom of a conversation.
+
+var messages_list = conversation.find('.messages-list');
+var height = messages_list[0].scrollHeight;
+messages_list.scrollTop(height);
+
+
+

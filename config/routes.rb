@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   
+  resources :conversations do
+    member do
+      post :close
+    end
+
+    resources :messages
+  end
+
+
   #ROOT
   root 'home#index'
   
@@ -11,6 +20,9 @@ Rails.application.routes.draw do
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
+
+  #maybe needed?
+  #mount ActionCable.server => '/cable'
   
   
   resources :posts do

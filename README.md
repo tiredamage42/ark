@@ -22,6 +22,8 @@ TO-DO:
 
 -~ajax comments~
 
+-~messenger~
+
 ---------------------------------------------------------------------
 
 -edit based on user ownership
@@ -38,6 +40,8 @@ TO-DO:
 
 -update user info (first last name, username, etc...)
 
+
+-group-chat
 
 -user avatars
 

@@ -1,5 +1,10 @@
 class User < ApplicationRecord
   
+  #has_and_belongs_to_many :conversations, dependent: :destroy
+  
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
   validates_uniqueness_of :email
 
   validates :first_name, presence: true, allow_blank: false

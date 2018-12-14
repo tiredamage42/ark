@@ -17,4 +17,44 @@
 //= require activestorage
 //= require_tree .
 
+/*
+runs a jQuery toggle() method and scrolls to the bottom of the window if it’s visible.
+*/
 
+
+$(document).on(
+    'click', 
+    '.toggle-chat-window', 
+    function(e) {
+
+        e.preventDefault();
+
+        console.log(e);
+  
+        var card = $(this).parent().parent();
+        console.log(card);
+  
+        
+        card.find('.card-body').toggle();
+        console.log(card);
+        
+        card.attr('class', 'card card-primary');
+        console.log(card);
+        
+        if (card.find('.card-body').is(':visible')) {
+            
+            console.log("we're visible");
+            
+            var messages_list = card.find('.messages-list');
+            var height = messages_list[0].scrollHeight;
+            messages_list.scrollTop(height);
+
+
+
+        }
+    }     
+);
+
+(function() {
+})();
+    
