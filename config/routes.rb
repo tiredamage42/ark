@@ -17,7 +17,14 @@ Rails.application.routes.draw do
   #use custom controllers ( our registration controller )
   devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' } do
     get ':user/edit-profile' => 'devise/registration#edit', :as => :edit_user_profile
+    
   end
+  
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#new'
+    get 'signup', to: 'devise/registrations#new'
+  end
+
   resources :users, :only => [:show]
   
   

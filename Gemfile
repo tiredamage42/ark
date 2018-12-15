@@ -74,3 +74,5 @@ gem "figaro"
 gem 'acts_as_votable', '~> 0.12.0'
 # admin panel
 gem 'rails_admin', '~> 1.3'
+
+gem 'bootstrap_form'
